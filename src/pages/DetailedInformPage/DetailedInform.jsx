@@ -32,8 +32,27 @@ export const DetailedInform = () => {
     };
 
     const handleChatBtnClick = () => {
-        navigate('/Chat');
-    };
+        const sellerId = product.userId; // 판매자 ID
+        const buyerId = localStorage.getItem('student_id'); // 현재 사용자 ID
+        const roomId = `${sellerId}_${buyerId}`; // 고유 채팅방 ID 생성
+      
+        // LocalStorage에 채팅방 정보 저장
+        const existingRooms = JSON.parse(localStorage.getItem('chatRooms')) || [];
+        const isRoomExists = existingRooms.some((room) => room.roomId === roomId);
+      
+        if (!isRoomExists) {
+          const newRoom = {
+            roomId,
+            participants: [sellerId, buyerId],
+            lastMessage: "",
+            lastMessageTime: null,
+          };
+          localStorage.setItem('chatRooms', JSON.stringify([...existingRooms, newRoom]));
+        }
+      
+        navigate(`/chat/${roomId}`); // 채팅방 페이지로 이동
+      };
+      
 
     const toggleLike = () => {
         const updatedProduct = { ...product, isLiked: !product.isLiked };

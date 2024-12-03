@@ -31,7 +31,7 @@ export const ProductRegist = () => {
       time: Date.now(), // 현재 시간을 저장
       imageSrc, // Base64 이미지 데이터
       isLiked: false,
-      userId : localStorage.getItem("student_id"),
+      userId : "0000000",
       nickname : localStorage.getItem("nickname")
     };
 

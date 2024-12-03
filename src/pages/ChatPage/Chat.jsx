@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState,useEffect } from 'react';
 import styles from './Chat.module.css';
 import SideBar from '../SideBar';  // SideBar 컴포넌트 임포트
 
@@ -10,16 +11,16 @@ import defaultProfile from '../../assets/image/DefaultProfile.png';
 
 const Chat = () => {
   const navigate = useNavigate();
+  const [chatRooms, setChatRooms] = useState([]);
 
   const handleChatClick = (chatId) => {
     navigate(`/chat/${chatId}`);
   };
 
-  const chatRooms = [
-    { id: 1, name: '상대방 이름 1', lastMessage: '마지막 메시지 1', profileImg: Profile1Img, productImg: Product1Img },
-    { id: 2, name: '상대방 이름 2', lastMessage: '마지막 메시지 2', profileImg: Profile1Img, productImg: Product1Img },
-    { id: 3, name: '상대방 이름 3', lastMessage: '마지막 메시지 3', profileImg: Profile1Img, productImg: Product1Img },
-  ];
+  useEffect(() => {
+    const storedRooms = JSON.parse(localStorage.getItem('chatRooms')) || [];
+    setChatRooms(storedRooms);
+  }, []);
 
   const getProfileImage = (profileImg) => {
     return profileImg || defaultProfile;
