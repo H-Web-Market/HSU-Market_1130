@@ -51,7 +51,7 @@ function App() {
         <Route path="/Chat" element={<Chat />} /> 
         
         {/* 채팅방 페이지 */}
-        <Route path="/Chat/:roomId" element={<ChattingRoom />} />
+        <Route path="/Chat/:chatId" element={<ChattingRoom />} />
         
         {/* 리뷰 작성 페이지 */}
         <Route path="/AddReview/:chatId" element={<AddReview/>}/>

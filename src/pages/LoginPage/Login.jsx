@@ -37,7 +37,6 @@ const LoginPage = () => {
       const data = await response.json();
       if (data.success) {
         console.log('로그인 성공:', data);
-        localStorage.setItem('student_id', studentId);
         navigate('/home'); // 로그인 성공 시 홈 화면으로 이동
       } else {
         setErrorMessage(data.message || '로그인에 실패했습니다. 학번, 비밀번호를 다시 확인해주세요.');
